@@ -1,0 +1,222 @@
+nat(0).
+nat(N):- nat(N1), N is N1 + 1.
+
+concat([],L,L).
+concat([X|L1],L2,[X|L3]):- concat(L1,L2,L3).
+
+inverso([],[]).
+inverso(L,[X|L1]):- concat(L2,[X],L), inverso(L2,L1).
+
+pert(X,[X|_]).
+pert(X,[_|L]) :- pert(X,L).
+
+pert_con_resto(X,L,Resto):- concat(L1,[X|L2],L), concat(L1,L2,Resto).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Hacer Aguas
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Representacion: [P,G] "P: Litros en el cubo de 5L, G: Litros en el cubo de 8L".
+
+% llenar cubo pequeño
+unPasoA1([P,G], [5,G]):-P<5.
+% llenar cubo grande
+unPasoA1([P,G], [P,8]):-G<8.
+
+% vaciar cubo pequeño
+unPasoA1([P,G], [0,G]):-P>0.
+% vaciar cubo grande
+unPasoA1([P,G], [P,0]):-G>0.
+
+% verter todo el contenido del cubo pequeño hacia el grande
+unPasoA1([P,G], [0,NG]):-
+	P>0, G<8,
+	8-G>=P,
+	NG is P+G.
+
+% verter parte del cubo pequeño hacia el grande
+unPasoA1([P,G], [NP,8]):-
+	P>0, G<8,
+	8-G<P,
+	NP is P-(8-G).
+
+% verter todo el contenido del cubo grande hacia el pequeño
+unPasoA1([P,G], [NP,0]):-
+	G>0, P<5,
+	5-P>=G,
+	NP is P+G.
+
+% verter parte del cubo grande hacia el pequeño
+unPasoA1([P,G], [5,NG]):-
+	G>0, P<5,
+	5-P<G,
+	NG is G-(5-P).
+
+caminoA1(E,E,C,C).
+caminoA1(EA, EF, HA, CT):-
+	unPasoA1(EA, ES),
+	\+member(ES, HA),
+	caminoA1(ES, EF, [ES|HA], CT).
+
+aguas:-	nat(N),
+	caminoA1([0,0],[_,4],[[0,0]],C),
+	length(C,N),
+	inverso(C,Sol),
+	write(Sol),!.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Canibales
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+noComen(0,_).
+noComen(M,C):-M>=C.
+
+safe(M,C):-	M>=0, M=<3, C>=0, C=<3, noComen(M,C), 
+		M1 is 3-M, C1 is 3-C,   noComen(M1,C1).
+
+pasan(M,C):-member([M,C], [ [0,1],[0,2],[1,0],[1,1],[2,0] ]).
+
+unPasoA2([lado1,M1,C1], [lado2,M2,C2]):-pasan(M,C), M2 is M1-M, C2 is C1-C, safe(M2,C2).
+unPasoA2([lado2,M1,C1], [lado1,M2,C2]):-pasan(M,C), M2 is M1+M, C2 is C1+C, safe(M2,C2).
+
+caminoA2(E,E,C,C).
+caminoA2(EA, EF, HA, CT):-
+	unPasoA2(EA, ES),
+	\+member(ES, HA),
+	caminoA2(ES, EF, [ES|HA], CT).
+
+canibal:-nat(N),
+	caminoA2([lado1,3,3],[lado2,0,0],[[lado1,3,3]],C),
+	length(C,N),
+	inverso(C,Sol),
+	write(Sol),!.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Linterna
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+abs(X,Y):-X<0, Y is -X.
+abs(X,Y):-X>=0, Y is X.
+
+abs_list([],[]).
+abs_list([X|S],C):-abs_list(S,C1), abs(X,Xabs), concat([Xabs],C1,C).
+
+
+max([X],X).
+max([X|S],X):-max(S,C), X>=C.
+max([X|S],C):-max(S,C), X<C.
+
+% Integer Value
+min([X],X).
+min([X|S],X):-min(S,C), X<C.
+min([X|S],C):-min(S,C), X>=X.
+
+% Natural value
+minLeft([X],X):-X>0.
+minLeft([X],-X):-X<0.
+minLeft([X|S],C):-minLeft(S,C), X<0.
+minLeft([X|S],X):-minLeft(S,C), X>0, X=<C.
+
+list_of_neg([], []).
+list_of_neg([X|L],S):-X>0, list_of_neg(L,S).
+list_of_neg([X|L],S):-X<0, list_of_neg(L,LS),  concat([X], LS, S).
+
+minRigth(L,X):-list_of_neg(L,S), max(S,X).
+
+numLeft([X],C):-X<0, C is 0.
+numLeft([X],C):-X>0, C is 1.
+numLeft([X|S],C):-numLeft(S,C1), numLeft([X],C2), C is C1+C2.
+
+passa([X,Y,Z,V], X, L):-X1 is -X, L=[X1,Y,Z,V].
+passa([X,Y,Z,V], Y, L):-Y1 is -Y, L=[X,Y1,Z,V].
+passa([X,Y,Z,V], Z, L):-Z1 is -Z, L=[X,Y,Z1,V].
+passa([X,Y,Z,V], V, L):-V1 is -V, L=[X,Y,Z,V1].
+
+
+% pasan 2
+unPasoA3([L1,1], [L2,0]):-
+			numLeft(L1,N1), N1>=2, 
+			max(L1,Xmax), minLeft(L1,Xmin), passa(L1,Xmax,LP), passa(LP,Xmin,L2).
+
+% pasa 1 (el ultimo que queda)
+unPasoA3([L1,1], [L2,0]):-
+			numLeft(L1,N1), N1<2, 
+			max(L1,Xmax), passa(L1,Xmax,L2).
+% vuelve 1
+unPasoA3([L1,0], [L2,1]):-
+			minRigth(L1, Xmin), passa(L1,Xmin,L2).
+
+caminoA3(E,E,C,C).
+caminoA3(EA, EF, HA, CT):-
+	unPasoA3(EA, ES),
+	\+member(ES, HA),
+	caminoA3(ES, EF, [ES|HA], CT).
+
+linterna:-nat(N),
+	caminoA3([[1,2,5,8],1], [[-1,-2,-5,-8],0], [[[1,2,5,8],1]], C),
+	length(C,N),	
+	path(C,P),
+	inverso(P,Sol),
+	recover(Sol, Cost),
+	nl, write('Total Cost: '), write(Cost),nl,!.
+
+path([],[]).
+path([ [L1,_]|S ],P):-path(S,P1), concat([L1],P1,P).
+
+passaron([],[],[]).
+passaron([X1|L1],[X2|L2],L):-X1==X2, passaron(L1,L2,L).
+passaron([X1|L1],[X2|L2],L):-X1\==X2, abs(X1,C1), passaron(L1,L2,L3), concat([C1],L3,L).
+
+cost(L1,L2,C):-passaron(L1,L2,L3), max(L3,C).
+
+recover([_],0).
+recover([L1,L2|S],C):-	cost(L1,L2,C12), 
+			write('Cost '), write(L1), write(' -> '), write(L2), write(': '), write(C12), nl,
+			recover([L2|S],C2S), C is C12+C2S.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Problema B
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+datosEjemplo( [ [1,2,6],[1,6,7],[2,3,8],[6,7,9],[6,8,9],[1,2,4],[3,5,6],[3,5,7],
+		[5,6,8],[1,6,8],[4,7,9],[4,6,9],[1,4,6],[3,6,9],[2,3,5],[1,4,5],
+		[1,6,7],[6,7,8],[1,2,4],[1,5,7],[2,5,6],[2,3,5],[5,7,9],[1,6,8] ] ).
+
+concatNoRepeat(X, L, C):- \+member(X,L),!,concat([X],L,C).
+concatNoRepeat(_, L, L).
+
+checkSlots(_,[],A,B,C,A,B,C).
+checkSlots(N,[X|L],A,B,C,SA,SB,SC):- 	member(Xa,X), member(Xb,X), Xa \= Xb, member(Xc,X), Xa \= Xc, Xb \= Xc,
+					concatNoRepeat(Xa,A,A1), concatNoRepeat(Xb,B,B1), concatNoRepeat(Xc,C,C1),
+					length(A1,NA), length(B1,NB), length(C1,NC), N2 is NA+NB+NC, N2=<N,
+					checkSlots(N,L,A1,B1,C1,SA,SB,SC).
+
+triples([],_,_,0).
+triples([X|A],B,C,S):-member(X,B), member(X,C),!, triples(A,B,C,S1), S is S1+1.
+triples([_|A],B,C,S):-triples(A,B,C,S).
+
+
+charlas:-
+	nat(N), datosEjemplo(L),
+	checkSlots(N,L,[],[],[], A, B, C),
+	write('Slot 1: '), write(A), nl, 
+	write('Slot 2: '), write(B), nl,
+	write('Slot 3: '), write(C), nl, nl,
+	write('#charlas: '), write(N), nl,
+	triples(A,B,C,NT),
+	write('#charlas triples: '),  write(NT), nl,!.
+
+charlasExt:-
+	datosEjemplo(L),
+	nat(NC), checkSlots(NC,L,[],[],[],_,_,_), !,
+	nat(NT), checkSlots(NC,L,[],[],[],A,B,C), triples(A,B,C,NT),
+	write('Slot 1: '), write(A), nl, 
+	write('Slot 2: '), write(B), nl, 
+	write('Slot 3: '), write(C), nl, nl,
+	write('#charlas: '), write(NC), nl, 
+	write('#charlas triples: '), write(NT), nl,!.
+
+
+
+

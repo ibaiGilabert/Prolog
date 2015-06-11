@@ -1,0 +1,187 @@
+pert(X,[X|_]).
+pert(X,[_|L]):-pert(X,L).
+
+pert_con_resto(X,L,Resto):-concat(L1,[X|L2],L), concat(L1,L2,Resto).
+
+concat([],L,L).
+concat([X|L1],L2,[X|L3]):-concat(L1,L2,L3).
+
+permutacion([],[]).
+permutacion(L,[X|P]) :- pert_con_resto(X,L,R), permutacion(R,P).
+
+
+numLeft([X],C):-X<0, C is 0.
+numLeft([X],C):-X>0, C is 1.
+numLeft([X|S],C):-numLeft(S,C1), numLeft([X],C2), C is C1+C2.
+
+abs(X,Y):-X<0, Y is -X.
+abs(X,Y):-X>=0, Y is X.
+
+abs_list([],[]).
+abs_list([X|S],C):-abs_list(S,C1), abs(X,Xabs), concat([Xabs],C1,C).
+
+max([X],X).
+max([X|S],X):-max(S,C), X>=C.
+max([X|S],C):-max(S,C), X<C.
+
+min([X],X).
+min([X|S],X):-min(S,C), X<C.
+min([X|S],C):-min(S,C), X>=C.
+
+list_of_nat(0,[]).
+list_of_nat(N,L):-N2 is N-1, list_of_nat(N2,L2), concat(L2,[N],L),!.
+
+% Labos 5 test
+ciutats([paris,bangkok,montevideo,windhoek,male,delhi,reunion,lima,banff]).
+
+interessos([paisatges,cultura,etnies,gastronomia,esport,relax]).
+
+indexOf([X|_], X, 1):- !.
+indexOf([_|L], X, Pos):-indexOf(L, X, Pos1),!,Pos is Pos1+1.
+
+numCity(X,N):-ciutats(L), indexOf(L,X,N).
+
+remove_it([_|L],1,L).
+remove_it([X|L],N,[X|S]):-N1 is N-1, remove_it(L,N1,S).
+
+remove_cities(N,[],N).
+remove_cities(N,[X|L],C):-remove_cities(N,L,C1), numCity(X,X1), remove_it(C1,X1,C).
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 2
+%%%%%%%%%%%%%%%%%%
+prod([X,Y|[]], P):-P is X*Y,!.
+prod([X|L],P):-prod(L,P1), P is X*P1.
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 3
+%%%%%%%%%%%%%%%%%%
+pescalar([],[],0).
+pescalar([X|L1],[Y|L2],P):-pescalar(L1,L2,P1), P is X*Y+P1.
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 4
+%%%%%%%%%%%%%%%%%%
+intersect([],_,[]).
+intersect([X|L1],L2,[X|L3]):-pert(X,L2),!,intersect(L1,L2,L3).
+intersect([_|L1],L2,L3):-intersect(L1,L2,L3).
+
+union([],L,L).
+union([X|L1],L2,[X|L3]):-union(L1,L2,L3).
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 5
+%%%%%%%%%%%%%%%%%%
+ultimo(L,X):-concat(_,[X],L),!.
+
+inverso([],[]).
+inverso(L,[X|L1]):-concat(L2,[X],L),inverso(L2,L1),!.
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 6
+%%%%%%%%%%%%%%%%%%
+fib(1,1).
+fib(2,1).
+fib(N,F):-N>2, N1 is N-1,fib(N1,F1), N2 is N-2,fib(N2,F2), F is F1+F2.
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 7
+%%%%%%%%%%%%%%%%%%
+%%Ejemplo: P=5,N=2,L=[1,4].
+dados(0,0,[]).
+dados(P,N,[X|L]):-pert(X,[1,2,3,4,5,6]), N>0, Q is P-X, M is N-1, dados(Q,M,L).
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 8
+%%%%%%%%%%%%%%%%%%
+sum_list([],0).
+sum_list([X|L],S):-sum_list(L,S1), S is S1+X.
+
+suma_demas(L):-pert_con_resto(X,L,R), sum_list(R,X),!.
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 9
+%%%%%%%%%%%%%%%%%%
+suma_ants(L):-concat(L1,[X|_],L), sum_list(L1,X),!.
+
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 10
+%%%%%%%%%%%%%%%%%%
+card([],[]).
+card([X|L], [[X,N1]|C]):- card(L,S), pert_con_resto([X,N],S,C), N1 is N+1.
+card([X|L], [[X,1]|C]):-card(L,C). 
+
+
+car(L):-card(L,C),write(C),!.
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 11
+%%%%%%%%%%%%%%%%%%
+esta_ordenada([]).
+esta_ordenada([_]).
+esta_ordenada([X,Y|L]):-esta_ordenada([Y|L]), X=<Y.
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 12
+%%%%%%%%%%%%%%%%%%
+%ordenacion(L1,L2):-permutacion(L1,L2), esta_ordenada(L2),!.
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 14
+%%%%%%%%%%%%%%%%%%
+
+insercion(X,[],[X]).
+insercion(X,[Y|L],[X,Y|L]):-X=<Y.
+insercion(X,[Y|L1],[Y|L2]):-X>Y, insercion(X,L1,L2).
+
+%ordenacion([],[]).
+%ordenacion([X|L1],L2):-ordenacion(L1,LO), insercion(X,LO,L2).
+
+%%%%%%%%%%%%%%%%%%
+%%% Ej: 16
+%%%%%%%%%%%%%%%%%%
+
+split([],[],[]).
+split([X],[X],[]).
+split(L,L1,L2):-concat(L1,L2,L), length(L1,S1), length(L,S), S1 is S*2. % y si es impar¿?
+
+merge_sort([],[]).
+merge_sort([X],[X]).
+merge_sort([X,Y],[X,Y]):-X=<Y.
+merge_sort([X,Y],[Y,X]):-X>Y.
+merge_sort(L,C):-
+		split(L,L1,L2),
+		write('L1: '), write(L1), nl,
+		write('L2: '), write(L2), nl,
+		merge_sort(L1,C1), merge_sort(L2,C2), concat(C1,C2,C).
+
+%ordenacion(L1,L2):-
+
+%%%%%%%%%%%%%%%%%%
+%%% test
+%%%%%%%%%%%%%%%%%%
+sides(I,J,L):- I2 is I+1, J2 is J+1, L=[h-I-J, h-I-J2, v-I-J, v-I2-J].
+
+subcjt([],[]).
+subcjt([X|C],[X|S]):-subcjt(C,S).
+subcjt([_|C],S):-subcjt(C,S).
+
+neg([],[]).
+neg([X|S],C):-neg(S,S2),concat([\+X],S2,C).
+
+%notOne(L,C):-subcjt(L,S), length(S,1), concat(S,R,L), neg(S,SN), concat(SN,R,C), write(C), fail.
+notOne(L,C):-subcjt(L,S), length(S,1), pert_con_resto(S,L,R), neg(S,SN), concat(SN,R,C), 
+	write(C),nl,fail.
+notOne(_,_).
+
+atMost(K,L):-subcjt(L,S), length(S,KL), KL is K+1, neg(S,C), write(C),nl,fail.
+atMost(_,_).
+
+
+atmost(K,N):-
+	list_of_nat(N,L), subcjt(L,S), length(S,KL), KL is K+1, neg(S,C), 
+	write(C), nl, fail.
+atmost(_,_).
+
+

@@ -1,0 +1,374 @@
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 6'
+c initialized 9 variables
+c found 6 non trivial clauses
+c
+c random number generator seed 0
+c 
+c  seconds     variables   original    learned     learning        MB
+c         level        used      conflicts    limit      agility
+c 
+c s   0.0   0.0     9   0.0     5     0     0     0   0.0   0.0   0.0 
+c 
+c initial reduction limit 100 clauses
+c 
+c 1   0.0   5.0     9   0.0     5     0     0   100   0.0   0.0   0.0 
+c 
+c  seconds     variables   original    learned     learning        MB
+c         level        used      conflicts    limit      agility
+c 
+s SATISFIABLE
+v 1 2 3 4 5 6 7 8 9 0
+c
+c 0 iterations
+c 0 restarts (0 skipped)
+c 0 conflicts (0 uips = 0.0%)
+c 0 adc conflicts
+c 9 dereferenced literals
+c 9 decisions (0 random = 0.00%, 0 assumptions)
+c 9 static phase decisions (100.0% of all variables)
+c 0 fixed variables
+c 0 learned literals
+c 0.0% deleted literals
+c 0 antecedents (0.0 antecedents per clause)
+c 9 propagations (1.0 propagations per decision)
+c 0 visits (0.0 per propagation)
+c 0 binary clauses visited (0.0% 0.0 per propagation)
+c 0 ternary clauses visited (0.0% 0.0 per propagation)
+c 0 large clauses visited (0.0% 0.0 per propagation)
+c 0 other true (0.0% of visited clauses)
+c 0 other true in binary clauses (0.0%), 0 upper (0.0%)
+c 0 other true in large clauses (0.0%), 0 upper (0.0%)
+c 0 ternary and large traversals (0.0 per visit)
+c 0 large traversals (0.0 per large visit)
+c 9 assignments
+c 0.0% variables used
+c 0.0 seconds in library
+c 0.0 megaprops/second
+c 0.0 million visits per second
+c recycled 0.0 MB in 0 reductions
+c recycled 0.0 MB in 1 simplifications
+c 0.0 MB maximally allocated
+c -0.0 seconds total run time
+#Vars1: [1,2,3,4,5,6,7,8,9], size: 9
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 9'
+infile.cnf:8: clause missing
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 11'
+infile.cnf:8: clause missing
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 3'
+infile.cnf:5: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 2'
+infile.cnf:4: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 3'
+infile.cnf:5: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 0'
+infile.cnf:2: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 2'
+infile.cnf:4: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 4'
+infile.cnf:6: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 6'
+c initialized 9 variables
+c found 6 non trivial clauses
+c
+c random number generator seed 0
+c 
+c  seconds     variables   original    learned     learning        MB
+c         level        used      conflicts    limit      agility
+c 
+c s   0.0   0.0     9   0.0     5     0     0     0   0.0   0.0   0.0 
+c 
+c initial reduction limit 100 clauses
+c 
+c 1   0.0   5.0     9   0.0     5     0     0   100   0.0   0.0   0.0 
+c 
+c  seconds     variables   original    learned     learning        MB
+c         level        used      conflicts    limit      agility
+c 
+s SATISFIABLE
+v 1 2 3 4 5 6 7 8 9 0
+c
+c 0 iterations
+c 0 restarts (0 skipped)
+c 0 conflicts (0 uips = 0.0%)
+c 0 adc conflicts
+c 9 dereferenced literals
+c 9 decisions (0 random = 0.00%, 0 assumptions)
+c 9 static phase decisions (100.0% of all variables)
+c 0 fixed variables
+c 0 learned literals
+c 0.0% deleted literals
+c 0 antecedents (0.0 antecedents per clause)
+c 9 propagations (1.0 propagations per decision)
+c 0 visits (0.0 per propagation)
+c 0 binary clauses visited (0.0% 0.0 per propagation)
+c 0 ternary clauses visited (0.0% 0.0 per propagation)
+c 0 large clauses visited (0.0% 0.0 per propagation)
+c 0 other true (0.0% of visited clauses)
+c 0 other true in binary clauses (0.0%), 0 upper (0.0%)
+c 0 other true in large clauses (0.0%), 0 upper (0.0%)
+c 0 ternary and large traversals (0.0 per visit)
+c 0 large traversals (0.0 per large visit)
+c 9 assignments
+c 0.0% variables used
+c 0.0 seconds in library
+c 0.0 megaprops/second
+c 0.0 million visits per second
+c recycled 0.0 MB in 0 reductions
+c recycled 0.0 MB in 1 simplifications
+c 0.0 MB maximally allocated
+c 0.0 seconds total run time
+#Vars1: [1,2,3,4,5,6,7,8,9], size: 9
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 1'
+infile.cnf:3: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 19'
+infile.cnf:8: clause missing
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 2'
+infile.cnf:4: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 0'
+infile.cnf:2: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 1'
+infile.cnf:3: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 2'
+infile.cnf:4: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 3'
+infile.cnf:5: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 4'
+infile.cnf:6: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 10'
+infile.cnf:8: clause missing
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 4'
+infile.cnf:6: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 0'
+infile.cnf:2: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 4'
+infile.cnf:6: too many clauses
+#Vars1: [], size: 0
+
+
+c PicoSAT SAT Solver Version 936
+c Copyright (c) 2006 - 2010 Armin Biere JKU Linz
+c gcc -DSTATS -DTRACE -Wall -Wextra -DNDEBUG -O2
+c
+c using 2 as default phase
+c
+c parsing infile.cnf
+c parsed header 'p cnf 9 17'
+infile.cnf:8: clause missing
+#Vars1: [], size: 0
+
+

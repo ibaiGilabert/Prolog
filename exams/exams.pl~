@@ -1,0 +1,11 @@
+subset(0,_,[]):-!.
+subset(N,[X|L],[X|S]):-N1 is N-1, subset(N1,L,S).
+subset(N,[_|L],S):-subset(N,L,S).
+
+listNumbers(0,[]):-!.
+listNumbers(N,L):-N1 is N-1, listNumbers(N1,L1), concat(L1,[N],L).
+
+concat([],L,L).
+concat([X|L1],L2,[X|L3]):-concat(L1,L2,L3).
+
+list200(L):-listNumbers(500000,C), subset(200,C,L).
