@@ -273,9 +273,9 @@ c 8994 propagations
 c 31222 visits
 c 19.3% variables used
 c 0.0 seconds in library
-c 1.3 megaprops/second
-c 4.4 megavisits/second
-c probing 0.0 seconds 41%
+c 1.2 megaprops/second
+c 4.2 megavisits/second
+c probing 0.0 seconds 27%
 c 1 simplifications
 c 0 reductions
 c 0.0 MB recycled
