@@ -184,4 +184,10 @@ atmost(K,N):-
 	write(C), nl, fail.
 atmost(_,_).
 
+removeSides([],L,L).
+removeSides([X|C],M,R):-pert_con_resto(X,M,M1), removeSides(C,M1,R),!.
+
+diferencia([],_,[]).
+diferencia([A|B],K,M):- member(A,K), diferencia(B,K,M).
+diferencia([A|B],K,[A|M]):- not(member(A,K)), diferencia(B,K,M).
 

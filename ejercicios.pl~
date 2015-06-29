@@ -181,7 +181,13 @@ atMost(_,_).
 
 atmost(K,N):-
 	list_of_nat(N,L), subcjt(L,S), length(S,KL), KL is K+1, neg(S,C), 
-	writeClause(C),	fail.
+	write(C), nl, fail.
 atmost(_,_).
 
+removeSides([],L,L).
+removeSides([X|C],M,R):-pert_con_resto(X,M,M1), removeSides(C,M1,R),!.
+
+diferencia([],_,[]).
+diferencia([A|B],K,M):- member(A,K), diferencia(B,K,M).
+diferencia([A|B],K,[A|M]):- not(member(A,K)), diferencia(B,K,M).
 
